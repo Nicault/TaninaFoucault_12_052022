@@ -24,6 +24,11 @@ const CongratsDiv = styled.div`
   line-height: 24px;
 `
 
+const GraphSection = styled.section`
+  display: flex;
+`
+const FirstDiv = styled.div``
+const SecondDiv = styled.div``
 function Home() {
   const { userId } = useParams()
   const url = `http://localhost:3000/user/${userId}`
@@ -40,8 +45,18 @@ function Home() {
       <CongratsDiv>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </CongratsDiv>
-      {!isLoading && <ActivitySection />}
-      {!isLoading && <MainDataSection />}
+      <GraphSection>
+        {!isLoading && (
+          <FirstDiv>
+            <ActivitySection />
+          </FirstDiv>
+        )}
+        {!isLoading && (
+          <SecondDiv>
+            <MainDataSection />
+          </SecondDiv>
+        )}
+      </GraphSection>
     </HomeSection>
   )
 }
