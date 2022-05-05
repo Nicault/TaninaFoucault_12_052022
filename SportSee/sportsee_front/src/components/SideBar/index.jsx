@@ -11,7 +11,7 @@ const SideSection = styled.section`
   padding-top: 91px;
   padding-bottom: 128px;
   height: 100%;
-  width: 117px;
+  width: 115px;
   background-color: black;
 
   position: fixed;

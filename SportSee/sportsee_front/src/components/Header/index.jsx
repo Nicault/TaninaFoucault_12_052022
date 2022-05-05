@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const HeaderSection = styled.section`
   z-index: 2;
 
-  height: 91px;
+  height: 90px;
   width: 100%;
   background-color: black;
   padding-top: 5px;
@@ -43,9 +43,9 @@ function Header() {
       </LogoDiv>
       <NavDiv>
         <StyledLink to="/">Accueil</StyledLink>
-        <StyledLink to="/profil">Profil</StyledLink>
-        <StyledLink to="/reglage">Réglage</StyledLink>
-        <StyledLink to="/communaute">Communauté</StyledLink>
+        <StyledLink to="/#">Profil</StyledLink>
+        <StyledLink to="/#">Réglage</StyledLink>
+        <StyledLink to="/#">Communauté</StyledLink>
       </NavDiv>
     </HeaderSection>
   )

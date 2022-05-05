@@ -4,11 +4,20 @@ import { useParams } from 'react-router-dom'
 import useFetch from '../../hooks/UseFetch'
 import MainDataSection from '../../components/MainDataSection'
 import ActivitySection from '../../components/ActivitySection'
+import AverageSessionSection from '../../components/AverageSessionSection'
+import PerformanceSection from '../../components/PerformanceSection'
+import TodayScore from '../../components/TodayScore'
 
 const HomeSection = styled.section`
   width: 100%;
-  padding-left: 217px;
-  padding-top: 68px;
+  max-height: 100vh;
+  magin-top: 90px;
+  margin-left: 230px;
+  padding: 5%;
+`
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
 `
 const HomeTitle = styled.h1`
   font-size: 48px;
@@ -18,7 +27,7 @@ const NameSpan = styled.span`
 `
 
 const CongratsDiv = styled.div`
-  margin-top: 41px;
+  margin-top: 3%;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
@@ -26,9 +35,22 @@ const CongratsDiv = styled.div`
 
 const GraphSection = styled.section`
   display: flex;
+  justify-content: space-between;
 `
-const FirstDiv = styled.div``
-const SecondDiv = styled.div``
+const LeftDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 60%;
+`
+const RightDiv = styled.div`
+  width: 30%;
+`
+const BottomDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 function Home() {
   const { userId } = useParams()
   const url = `http://localhost:3000/user/${userId}`
@@ -38,25 +60,28 @@ function Home() {
   return (
     <HomeSection>
       {!isLoading && (
-        <HomeTitle>
-          Bonjour <NameSpan>{userData.data.userInfos.firstName}</NameSpan>
-        </HomeTitle>
+        <Wrapper>
+          <HomeTitle>
+            Bonjour <NameSpan>{userData.data.userInfos.firstName}</NameSpan>
+          </HomeTitle>
+          <CongratsDiv>
+            Félicitation ! Vous avez explosé vos objectifs hier 👏
+          </CongratsDiv>
+          <GraphSection>
+            <LeftDiv>
+              <ActivitySection />
+              <BottomDiv>
+                <AverageSessionSection />
+                <PerformanceSection />
+                <TodayScore />
+              </BottomDiv>
+            </LeftDiv>
+            <RightDiv>
+              <MainDataSection />
+            </RightDiv>
+          </GraphSection>
+        </Wrapper>
       )}
-      <CongratsDiv>
-        <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
-      </CongratsDiv>
-      <GraphSection>
-        {!isLoading && (
-          <FirstDiv>
-            <ActivitySection />
-          </FirstDiv>
-        )}
-        {!isLoading && (
-          <SecondDiv>
-            <MainDataSection />
-          </SecondDiv>
-        )}
-      </GraphSection>
     </HomeSection>
   )
 }
