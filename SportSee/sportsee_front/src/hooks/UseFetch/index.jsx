@@ -1,22 +1,30 @@
 import { useState, useEffect } from 'react'
 
-function useFetch(url) {
+import { useParams } from 'react-router-dom'
+
+function useFetch() {
+  const [isLoading, setLoading] = useState(true)
   const [userData, setData] = useState({})
 
-  const [isLoading, setLoading] = useState(true)
+  const { userId } = useParams()
+  const urls = [
+    `http://localhost:3000/user/${userId}`,
+    `http://localhost:3000/user/${userId}/activity`,
+    `http://localhost:3000/user/${userId}/average-sessions`,
+    `http://localhost:3000/user/${userId}/performance`,
+  ]
 
   useEffect(() => {
-    if (!url) return
+    if (!urls) return
 
     setLoading(true)
 
     async function fetchData() {
       try {
-        const response = await fetch(url)
-
-        const data = await response.json()
-
-        setData(data)
+        const response = await Promise.all(
+          urls.map((url) => fetch(url).then((res) => res.json()))
+        )
+        setData(response)
       } catch (err) {
         console.log(err)
       } finally {
@@ -25,7 +33,8 @@ function useFetch(url) {
     }
 
     fetchData()
-  }, [url])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId])
 
   return { isLoading, userData }
 }

@@ -12,7 +12,8 @@ body{
 
 
 #root{
-    max-height: 100vh;
+    height: 100vh;
+    min-width: 1024px;
     position : relative;
     display: flex;
     flex-direction: column;

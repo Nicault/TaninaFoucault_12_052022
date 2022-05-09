@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom'
-import useFetch from '../../hooks/UseFetch'
 import styled from 'styled-components'
 import {
   Radar,
@@ -11,18 +9,17 @@ import {
 } from 'recharts'
 
 const Wrapper = styled.div`
-  height: 500px;
-  width: 500px;
-
+  height: 100%;
+  width: 30%;
   background-color: #282d30;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
-function PerformanceSection() {
-  const { userId } = useParams()
-  const url = `http://localhost:3000/user/${userId}/performance `
-
-  const { userData, isLoading } = useFetch(url)
-  //   console.log(userData.data)
+function PerformanceSection({ isLoading, userData }) {
+  // console.log(userData.data)
 
   const formatKind = (kindNumber) => {
     // console.log(kindNumber.kind)
@@ -33,37 +30,30 @@ function PerformanceSection() {
 
   return (
     <Wrapper>
-      {!isLoading && (
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          min-width={250}
-          min-height={250}
+      <ResponsiveContainer width="100%" height={200}>
+        <RadarChart
+          cx="50%"
+          cy="50%"
+          outerRadius="80%"
+          data={userData.data.data}
         >
-          <RadarChart
-            cx="50%"
-            cy="50%"
-            outerRadius="80%"
-            data={userData.data.data}
-          >
-            <PolarGrid />
-            <PolarAngleAxis
-              dataKey={formatKind}
-              axisLine={false}
-              tickLine={false}
-              stroke="white"
-            />
-            {/* <PolarRadiusAxis /> */}
-            <Radar
-              //   name="Mike"
-              dataKey="value"
-              stroke="rgba(255, 1, 1, 0.7)"
-              fill="rgba(255, 1, 1, 0.7)"
-              fillOpacity={0.8}
-            />
-          </RadarChart>
-        </ResponsiveContainer>
-      )}
+          <PolarGrid />
+          <PolarAngleAxis
+            dataKey={formatKind}
+            axisLine={false}
+            tickLine={false}
+            stroke="white"
+          />
+          {/* <PolarRadiusAxis /> */}
+          <Radar
+            //   name="Mike"
+            dataKey="value"
+            stroke="rgba(255, 1, 1, 0.7)"
+            fill="rgba(255, 1, 1, 0.7)"
+            fillOpacity={0.8}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
     </Wrapper>
   )
 }

@@ -1,14 +1,16 @@
 import styled from 'styled-components'
 
 const Div = styled.div`
-  height: 124px;
-  width: 258px;
+  width: 100%;
+  max-width: 260px;
+  height: 125px;
+  padding: 30px;
   border-radius: 5px;
   background-color: #fbfbfb;
   box-shadow: 0px 2px 4px 0px #00000005;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `
 

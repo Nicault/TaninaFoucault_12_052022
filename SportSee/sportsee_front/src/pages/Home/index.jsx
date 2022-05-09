@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
 
 import useFetch from '../../hooks/UseFetch'
 import MainDataSection from '../../components/MainDataSection'
@@ -9,16 +8,28 @@ import PerformanceSection from '../../components/PerformanceSection'
 import TodayScore from '../../components/TodayScore'
 
 const HomeSection = styled.section`
-  width: 100%;
-  max-height: 100vh;
-  magin-top: 90px;
-  margin-left: 230px;
-  padding: 5%;
+  min-width: 909px;
+  min-height: 690px;
+  margin-left: 115px;
+
+  height: 100%;
+  width: calc(100% - 115px);
+  padding: 4% 3%;
 `
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
+
+const HeaderDiv = styled.div`
+  width: 100%;
+  height: 15%;
+  margin-bottom: 5%;
+`
+
 const HomeTitle = styled.h1`
   font-size: 48px;
 `
@@ -26,7 +37,7 @@ const NameSpan = styled.span`
   color: red;
 `
 
-const CongratsDiv = styled.div`
+const Congrats = styled.p`
   margin-top: 3%;
   font-weight: 400;
   font-size: 18px;
@@ -36,48 +47,55 @@ const CongratsDiv = styled.div`
 const GraphSection = styled.section`
   display: flex;
   justify-content: space-between;
+  height: 80%;
+  width: 100%;
 `
 const LeftDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
-  width: 60%;
+  min-width: 70%;
+  height: 100%;
 `
 const RightDiv = styled.div`
-  width: 30%;
+  min-width: 30%;
 `
 const BottomDiv = styled.div`
   display: flex;
+  // width: 100%;
+  height: 45%;
   justify-content: space-between;
 `
 
 function Home() {
-  const { userId } = useParams()
-  const url = `http://localhost:3000/user/${userId}`
-
-  const { userData, isLoading } = useFetch(url)
+  const { userData, isLoading } = useFetch()
+  console.log(userData)
 
   return (
     <HomeSection>
       {!isLoading && (
         <Wrapper>
-          <HomeTitle>
-            Bonjour <NameSpan>{userData.data.userInfos.firstName}</NameSpan>
-          </HomeTitle>
-          <CongratsDiv>
-            Félicitation ! Vous avez explosé vos objectifs hier 👏
-          </CongratsDiv>
+          <HeaderDiv>
+            <HomeTitle>
+              Bonjour{' '}
+              <NameSpan>{userData[0].data.userInfos.firstName}</NameSpan>
+            </HomeTitle>
+            <Congrats>
+              Félicitation ! Vous avez explosé vos objectifs hier 👏
+            </Congrats>
+          </HeaderDiv>
           <GraphSection>
             <LeftDiv>
-              <ActivitySection />
+              <ActivitySection userData={userData[1]} />
               <BottomDiv>
-                <AverageSessionSection />
-                <PerformanceSection />
-                <TodayScore />
+                <AverageSessionSection userData={userData[2]} />
+                <PerformanceSection userData={userData[3]} />
+                <TodayScore userData={userData[0]} />
               </BottomDiv>
             </LeftDiv>
             <RightDiv>
-              <MainDataSection />
+              <MainDataSection userData={userData[0]} />
             </RightDiv>
           </GraphSection>
         </Wrapper>
