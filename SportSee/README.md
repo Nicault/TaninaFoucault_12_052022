@@ -34,4 +34,4 @@ If you are working with several versions of NodeJS, we recommend you install nvm
 
 - In the Front-End folder :  
     - The yarn command will allow you to install the dependencies : yarn install
-    - The start command will allow you to lanch the back-end : yarn start
+    - The start command will allow you to lanch the front-end : yarn start
