@@ -2,32 +2,37 @@ import styled from 'styled-components'
 
 import useFetch from '../../hooks/UseFetch'
 import MainDataSection from '../../components/MainDataSection'
-import ActivitySection from '../../components/ActivitySection'
-import AverageSessionSection from '../../components/AverageSessionSection'
-import PerformanceSection from '../../components/PerformanceSection'
-import TodayScore from '../../components/TodayScore'
+import ActivitySection from '../../components/Graphs/ActivitySection'
+import AverageSessionSection from '../../components/Graphs/AverageSessionSection'
+import PerformanceSection from '../../components/Graphs/PerformanceSection'
+import TodayScore from '../../components/Graphs/TodayScore'
 
 const HomeSection = styled.section`
   min-width: 909px;
   min-height: 690px;
   margin-left: 115px;
-
-  height: 100%;
+  height: 100vh;
   width: calc(100% - 115px);
-  padding: 4% 3%;
+  display: flex;
+  justify-content: center;
+  align-tiems: center;
 `
 const Wrapper = styled.div`
-  height: 100%;
-  width: 100%;
+  // background-color: blue;
+  width: 90%;
+  // aspect-ratio: 16 / 3;
+  // margin: auto;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  // align-items: center;
 `
 
 const HeaderDiv = styled.div`
   width: 100%;
-  height: 15%;
-  margin-bottom: 5%;
+  height: 10%;
+  // margin-bottom: 7%;
 `
 
 const HomeTitle = styled.h1`
@@ -47,30 +52,36 @@ const Congrats = styled.p`
 const GraphSection = styled.section`
   display: flex;
   justify-content: space-between;
-  height: 80%;
+  height: 70%;
   width: 100%;
+  // min-height: 613px;
 `
 const LeftDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  min-width: 70%;
-  height: 100%;
+  // min-width: 65%;
+  width: 100%;
+  // height: 100%;
 `
 const RightDiv = styled.div`
-  min-width: 30%;
+  padding-left: 5%;
 `
 const BottomDiv = styled.div`
-  display: flex;
-  // width: 100%;
-  height: 45%;
-  justify-content: space-between;
+  // display: flex;
+  height: 50%;
+  // justify-content: space-between;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 4%;
 `
 
 function Home() {
   const { userData, isLoading } = useFetch()
-  console.log(userData)
+  // console.log(userData)
 
   return (
     <HomeSection>

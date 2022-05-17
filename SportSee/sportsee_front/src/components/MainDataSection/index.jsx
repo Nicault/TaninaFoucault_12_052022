@@ -12,41 +12,52 @@ const DataSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  padding-left: 10%;
 `
 
 function MainDataSection({ userData }) {
+  const dataList = [
+    {
+      logo: calories,
+      altTxt: 'Calories',
+      howMuch: userData.data.keyData.calorieCount,
+      unit: 'Cal',
+      what: 'Calories',
+    },
+    {
+      logo: protein,
+      altTxt: 'Proteines',
+      howMuch: userData.data.keyData.proteinCount,
+      unit: 'g',
+      what: 'Proteines',
+    },
+    {
+      logo: carbs,
+      altTxt: 'Glucides',
+      howMuch: userData.data.keyData.carbohydrateCount,
+      unit: 'g',
+      what: 'Glucides',
+    },
+    {
+      logo: fat,
+      altTxt: 'Lipides',
+      howMuch: userData.data.keyData.lipidCount,
+      unit: 'g',
+      what: 'Lipides',
+    },
+  ]
+
   return (
     <DataSection>
-      <MainData
-        logo={calories}
-        altTxt="Calories"
-        howMuch={userData.data.keyData.calorieCount}
-        unity="Cal"
-        what="Calories"
-      ></MainData>
-      <MainData
-        logo={protein}
-        altTxt="Proteines"
-        howMuch={userData.data.keyData.proteinCount}
-        unity="g"
-        what="Proteines"
-      ></MainData>
-      <MainData
-        logo={carbs}
-        altTxt="Glucides"
-        howMuch={userData.data.keyData.carbohydrateCount}
-        unity="g"
-        what="Glucides"
-      ></MainData>
-      <MainData
-        logo={fat}
-        altTxt="Lipides"
-        howMuch={userData.data.keyData.lipidCount}
-        unity="g"
-        what="Lipides"
-      ></MainData>
+      {dataList.map((element) => (
+        <MainData
+          key={`${element.howMuch}-${element.what}`}
+          logo={element.logo}
+          altTxt={element.altTxt}
+          howMuch={element.howMuch}
+          unit={element.unit}
+          what={element.what}
+        ></MainData>
+      ))}
     </DataSection>
   )
 }

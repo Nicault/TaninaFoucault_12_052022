@@ -1,9 +1,10 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Div = styled.div`
-  width: 100%;
-  max-width: 260px;
-  height: 125px;
+  width: 260px;
+  // width: 100%;
+  // height: 125px;
   padding: 30px;
   border-radius: 5px;
   background-color: #fbfbfb;
@@ -29,18 +30,26 @@ const Legende = styled.p`
   color: #74798c;
 `
 
-function MainData({ logo, altTxt, howMuch, unity, what }) {
+function MainData({ logo, altTxt, howMuch, unit, what }) {
   return (
     <Div>
       <Icon src={logo} alt={altTxt} />
       <QuantityDiv>
         <Number>
-          {howMuch} {unity}
+          {howMuch} {unit}
         </Number>
         <Legende>{what}</Legende>
       </QuantityDiv>
     </Div>
   )
+}
+
+MainData.propTypes = {
+  logo: PropTypes.string,
+  altTxt: PropTypes.string,
+  howMuch: PropTypes.number,
+  unit: PropTypes.string,
+  what: PropTypes.string,
 }
 
 export default MainData

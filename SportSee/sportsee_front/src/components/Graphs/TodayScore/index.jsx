@@ -9,26 +9,38 @@ import {
 } from 'recharts'
 
 const Wrapper = styled.div`
-  height: 100%;
-  width: 20%;
+  // height: 100%;
+  // width: 30%;
 
-  background-color: #fbfbfb;
+  padding: 10%;
+
+  // background-color: #fbfbfb;
   border-radius: 5px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  // transform: rotate(-90deg);
 
   position: relative;
 `
 
+const Title = styled.h2`
+  font-size: 15px;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+`
 const Text = styled.p`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-size: 16px;
   font-weight: 500;
   text-align: center;
   color: black;
   position: absolute;
+  line-height: 26px;
+  color: #282d30;
 `
 
 const Percentage = styled.span`
@@ -48,23 +60,30 @@ function TodayScore({ userData }) {
 
   return (
     <Wrapper>
-      {percentValue && (
-        <Text>
-          <Percentage>{percentValue} % </Percentage>
-          <br />
-          de votre objectif
-        </Text>
-      )}
-      <ResponsiveContainer width="100%" height={200}>
+      <Title>Score</Title>
+      <Text>
+        <Percentage>{percentValue} %</Percentage>
+        <br />
+        de votre <br />
+        objectif
+      </Text>
+
+      <ResponsiveContainer width="100%" height="100%">
         <RadialBarChart
-          cx="50%"
-          cy="50%"
+          // cx="50%"
+          // cy="50%"
           innerRadius="100%"
           outerRadius="100%"
           barSize={10}
           data={[userData.data]}
           startAngle={90}
           endAngle={450}
+          // margin={{
+          //   top: 20,
+          //   right: 20,
+          //   left: 20,
+          //   bottom: 20,
+          // }}
         >
           <PolarAngleAxis
             type="number"
@@ -82,7 +101,6 @@ function TodayScore({ userData }) {
             dataKey={formatScore}
             cornerRadius={30 / 2}
           />
-          {/* <Legend iconSize={10} layout="vertical" verticalAlign="middle" /> */}
         </RadialBarChart>
       </ResponsiveContainer>
     </Wrapper>
