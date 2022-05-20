@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import {
   RadialBarChart,
@@ -49,11 +50,11 @@ const Percentage = styled.span`
 `
 
 function TodayScore({ userData }) {
-  // console.log([userData.data.todayScore])
+  const data = userData.data
 
   const formatScore = () => {
-    if (userData.data.score) return userData.data.score * 100
-    else if (userData.data.todayScore) return userData.data.todayScore * 100
+    if (data.score) return data.score * 100
+    else if (data.todayScore) return data.todayScore * 100
   }
 
   const percentValue = formatScore()
@@ -75,7 +76,7 @@ function TodayScore({ userData }) {
           innerRadius="100%"
           outerRadius="100%"
           barSize={10}
-          data={[userData.data]}
+          data={[data]}
           startAngle={90}
           endAngle={450}
           // margin={{
@@ -84,6 +85,8 @@ function TodayScore({ userData }) {
           //   left: 20,
           //   bottom: 20,
           // }}
+
+          background={{ fill: '#FBFBFB' }}
         >
           <PolarAngleAxis
             type="number"
@@ -105,6 +108,10 @@ function TodayScore({ userData }) {
       </ResponsiveContainer>
     </Wrapper>
   )
+}
+
+TodayScore.propTypes = {
+  userData: PropTypes.object,
 }
 
 export default TodayScore

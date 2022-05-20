@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
 import {
   Radar,
   RadarChart,
@@ -26,6 +28,8 @@ const Wrapper = styled.div`
 `
 
 function PerformanceSection({ userData }) {
+  const data = userData.data
+
   const tradItem = (item) => {
     if (item === 'cardio') return 'Cardio'
     if (item === 'energy') return 'Energie'
@@ -36,8 +40,8 @@ function PerformanceSection({ userData }) {
   }
 
   const formatKind = (kindNumber) => {
-    if (!userData) return
-    let result = userData.data.kind[kindNumber.kind]
+    if (!data) return
+    let result = data.kind[kindNumber.kind]
     return tradItem(result)
     // return result.charAt(0).toUpperCase() + result.slice(1)
   }
@@ -52,7 +56,7 @@ function PerformanceSection({ userData }) {
 
           // width="50%"
           // height="50%"
-          data={userData.data.data}
+          data={data.data}
           startAngle={210}
           endAngle={570}
         >
@@ -75,6 +79,10 @@ function PerformanceSection({ userData }) {
       </ResponsiveContainer>
     </Wrapper>
   )
+}
+
+PerformanceSection.propTypes = {
+  userData: PropTypes.object,
 }
 
 export default PerformanceSection

@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import ActivityTooltip from '../Tooltips//ActivityTooltip'
+import PropTypes from 'prop-types'
 
 const ActivityDiv = styled.div`
   // position: relative;
@@ -36,6 +37,8 @@ const Title = styled.h2`
 `
 
 function ActivitySection({ userData }) {
+  const data = userData.data
+
   const formatXAxis = (tickItem) => {
     let result = tickItem.toString().slice(-2)
     if (result[0] === '0') return result.slice(1)
@@ -67,7 +70,7 @@ function ActivitySection({ userData }) {
         </Legende> */}
       {/* </Text> */}
       <ResponsiveContainer width="100%" height="90%">
-        <BarChart data={userData.data.sessions}>
+        <BarChart data={data.sessions}>
           <CartesianGrid
             stroke="#DEDEDE"
             strokeDasharray=" 3 3 "
@@ -104,7 +107,10 @@ function ActivitySection({ userData }) {
             domain={[0, 'dataMax +50']}
           />
 
-          <Tooltip content={ActivityTooltip} />
+          <Tooltip
+            content={ActivityTooltip}
+            cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
+          />
           <Legend
             width="60%"
             // verticalAlign="top"
@@ -136,6 +142,10 @@ function ActivitySection({ userData }) {
       {/* </Wrapper> */}
     </ActivityDiv>
   )
+}
+
+ActivitySection.propTypes = {
+  userData: PropTypes.object,
 }
 
 export default ActivitySection

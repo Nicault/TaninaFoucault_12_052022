@@ -36,7 +36,14 @@ function useFetch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId])
 
-  return { isLoading, userData }
+  const user = new Map()
+
+  user.set('global', userData[0])
+  user.set('activity', userData[1])
+  user.set('averageSession', userData[2])
+  user.set('performance', userData[3])
+
+  return { isLoading, user }
 }
 
 export default useFetch

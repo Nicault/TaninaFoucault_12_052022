@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import MainData from '../MainData'
 import fat from '../../assets/fat.svg'
@@ -15,32 +16,34 @@ const DataSection = styled.section`
 `
 
 function MainDataSection({ userData }) {
+  const data = userData.data.keyData
+
   const dataList = [
     {
       logo: calories,
       altTxt: 'Calories',
-      howMuch: userData.data.keyData.calorieCount,
+      howMuch: data.calorieCount,
       unit: 'Cal',
       what: 'Calories',
     },
     {
       logo: protein,
       altTxt: 'Proteines',
-      howMuch: userData.data.keyData.proteinCount,
+      howMuch: data.proteinCount,
       unit: 'g',
       what: 'Proteines',
     },
     {
       logo: carbs,
       altTxt: 'Glucides',
-      howMuch: userData.data.keyData.carbohydrateCount,
+      howMuch: data.carbohydrateCount,
       unit: 'g',
       what: 'Glucides',
     },
     {
       logo: fat,
       altTxt: 'Lipides',
-      howMuch: userData.data.keyData.lipidCount,
+      howMuch: data.lipidCount,
       unit: 'g',
       what: 'Lipides',
     },
@@ -60,6 +63,10 @@ function MainDataSection({ userData }) {
       ))}
     </DataSection>
   )
+}
+
+MainDataSection.propTypes = {
+  userData: PropTypes.object,
 }
 
 export default MainDataSection

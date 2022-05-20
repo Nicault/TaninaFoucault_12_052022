@@ -80,7 +80,7 @@ const BottomDiv = styled.div`
 `
 
 function Home() {
-  const { userData, isLoading } = useFetch()
+  const { user, isLoading } = useFetch()
   // console.log(userData)
 
   return (
@@ -90,7 +90,7 @@ function Home() {
           <HeaderDiv>
             <HomeTitle>
               Bonjour{' '}
-              <NameSpan>{userData[0].data.userInfos.firstName}</NameSpan>
+              <NameSpan>{user.get('global').data.userInfos.firstName}</NameSpan>
             </HomeTitle>
             <Congrats>
               Félicitation ! Vous avez explosé vos objectifs hier 👏
@@ -98,15 +98,15 @@ function Home() {
           </HeaderDiv>
           <GraphSection>
             <LeftDiv>
-              <ActivitySection userData={userData[1]} />
+              <ActivitySection userData={user.get('activity')} />
               <BottomDiv>
-                <AverageSessionSection userData={userData[2]} />
-                <PerformanceSection userData={userData[3]} />
-                <TodayScore userData={userData[0]} />
+                <AverageSessionSection userData={user.get('averageSession')} />
+                <PerformanceSection userData={user.get('performance')} />
+                <TodayScore userData={user.get('global')} />
               </BottomDiv>
             </LeftDiv>
             <RightDiv>
-              <MainDataSection userData={userData[0]} />
+              <MainDataSection userData={user.get('global')} />
             </RightDiv>
           </GraphSection>
         </Wrapper>
