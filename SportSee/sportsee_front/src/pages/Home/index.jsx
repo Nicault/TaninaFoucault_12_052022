@@ -1,11 +1,57 @@
 import styled from 'styled-components'
-
-import useFetch from '../../hooks/UseFetch'
+import UseFetch from '../../hooks/UseFetch'
 import MainDataSection from '../../components/MainDataSection'
 import ActivitySection from '../../components/Graphs/ActivitySection'
 import AverageSessionSection from '../../components/Graphs/AverageSessionSection'
 import PerformanceSection from '../../components/Graphs/PerformanceSection'
 import TodayScore from '../../components/Graphs/TodayScore'
+
+/**
+ * collects the data and deliver it to the other components,
+ * displays the home page,
+ 
+ * @component
+ * @type     {Map}      user        User's data fetched from API
+ * @type     {boolean}  isLoading   Loading status
+ * @returns  {div}                  Home page
+ */
+
+function Home() {
+  const { user, isLoading } = UseFetch()
+
+  return (
+    <HomeSection>
+      {!isLoading && (
+        <Wrapper>
+          <HeaderDiv>
+            <HomeTitle>
+              Bonjour{' '}
+              <NameSpan>{user.get('global').data.userInfos.firstName}</NameSpan>
+            </HomeTitle>
+            <Congrats>
+              Félicitation ! Vous avez explosé vos objectifs hier 👏
+            </Congrats>
+          </HeaderDiv>
+          <GraphSection>
+            <LeftDiv>
+              <ActivitySection userData={user.get('activity')} />
+              <BottomDiv>
+                <AverageSessionSection userData={user.get('averageSession')} />
+                <PerformanceSection userData={user.get('performance')} />
+                <TodayScore userData={user.get('global')} />
+              </BottomDiv>
+            </LeftDiv>
+            <RightDiv>
+              <MainDataSection userData={user.get('global')} />
+            </RightDiv>
+          </GraphSection>
+        </Wrapper>
+      )}
+    </HomeSection>
+  )
+}
+
+export default Home
 
 const HomeSection = styled.section`
   min-width: 909px;
@@ -78,41 +124,3 @@ const BottomDiv = styled.div`
   grid-template-rows: 1fr;
   grid-column-gap: 4%;
 `
-
-function Home() {
-  const { user, isLoading } = useFetch()
-  // console.log(userData)
-
-  return (
-    <HomeSection>
-      {!isLoading && (
-        <Wrapper>
-          <HeaderDiv>
-            <HomeTitle>
-              Bonjour{' '}
-              <NameSpan>{user.get('global').data.userInfos.firstName}</NameSpan>
-            </HomeTitle>
-            <Congrats>
-              Félicitation ! Vous avez explosé vos objectifs hier 👏
-            </Congrats>
-          </HeaderDiv>
-          <GraphSection>
-            <LeftDiv>
-              <ActivitySection userData={user.get('activity')} />
-              <BottomDiv>
-                <AverageSessionSection userData={user.get('averageSession')} />
-                <PerformanceSection userData={user.get('performance')} />
-                <TodayScore userData={user.get('global')} />
-              </BottomDiv>
-            </LeftDiv>
-            <RightDiv>
-              <MainDataSection userData={user.get('global')} />
-            </RightDiv>
-          </GraphSection>
-        </Wrapper>
-      )}
-    </HomeSection>
-  )
-}
-
-export default Home

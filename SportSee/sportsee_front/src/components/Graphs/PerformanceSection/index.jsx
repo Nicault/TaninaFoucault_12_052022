@@ -10,27 +10,28 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-const Wrapper = styled.div`
-  // height: 100%;
-  // width: 30%;
+/**
+ * Displays the performance section graph,
+ 
+ * @prop     {object}   userData    Data get from API
+ * 
+ * @type     {object}   data        Specific datas used in this component
+ *
+ * @returns  {div}                  The graph section
+ */
 
-  background-color: #282d30;
-  font-size: 12px;
-  border-radius: 5px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 5%;
-
-  position: relative;
-`
+/**
+ * Format the tick items by translating,
+ *
+ * @param     {string}   item    type of in english
+ *
+ * @returns   {string}           type of translated in french
+ */
 
 function PerformanceSection({ userData }) {
   const data = userData.data
 
-  const tradItem = (item) => {
+  const translateItem = (item) => {
     if (item === 'cardio') return 'Cardio'
     if (item === 'energy') return 'Energie'
     if (item === 'endurance') return 'Endurance'
@@ -42,13 +43,13 @@ function PerformanceSection({ userData }) {
   const formatKind = (kindNumber) => {
     if (!data) return
     let result = data.kind[kindNumber.kind]
-    return tradItem(result)
+    return translateItem(result)
     // return result.charAt(0).toUpperCase() + result.slice(1)
   }
 
   return (
     <Wrapper>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="99%" height="99%">
         <RadarChart
           // cx="50%"
           // cy="50%"
@@ -86,3 +87,20 @@ PerformanceSection.propTypes = {
 }
 
 export default PerformanceSection
+
+const Wrapper = styled.div`
+  // height: 100%;
+  // width: 30%;
+
+  background-color: #282d30;
+  font-size: 12px;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 5%;
+
+  position: relative;
+`

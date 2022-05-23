@@ -12,29 +12,24 @@ import {
 import ActivityTooltip from '../Tooltips//ActivityTooltip'
 import PropTypes from 'prop-types'
 
-const ActivityDiv = styled.div`
-  // position: relative;
-  // display: flex;
-  // flex-direction: column;
-  height: 45%;
-  width: 100%;
-  border-radius: 5px;
+/**
+ * Displays the activity section graph,
+ 
+ * @prop     {object}   userData    Data get from API
+ * 
+ * @type     {object}   data        Specific datas used in this component
+ * @type     {Array}    dataList    Texts and datas needed for the display
 
-  background-color: #fbfbfb;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
-  border-radius: 5px;
+ * @returns  {div}                  The graph section
+ */
 
-  // ici padding à cause de la defaillance du responsivecontainer
-  padding-bottom: 40px;
-`
-
-const Title = styled.h2`
-  font-size: 15px;
-  height: 20%;
-  padding 20px 32px;
-  width: 50%
-  
-`
+/**
+ * Format the X axis,
+ 
+ * @param     {string}   tickItem    Date format AAAA-MM-DD
+ * 
+ * @returns   {string}               Date format D for ( 1 - 9 ) and DD for ( >= 10 )
+ */
 
 function ActivitySection({ userData }) {
   const data = userData.data
@@ -45,31 +40,10 @@ function ActivitySection({ userData }) {
     else return result
   }
 
-  // console.log(user)
-
-  // const tickValue = () => {
-  //   let min = userData.data.sessions[0].kilogram
-  //   let max = 0
-  //   for (let i = 0; i < userData.data.sessions.length; i++) {
-  //     if (userData.data.sessions[i].kilogram < min)
-  //       min = userData.data.sessions[i].kilogram
-  //     if (userData.data.sessions[i].kilogram > max)
-  //       max = userData.data.sessions[i].kilogram
-  //   }
-
-  //   return Math.round((max - min + 2) / 2)
-  // }
-
   return (
     <ActivityDiv>
-      {/* <Wrapper> */}
-      {/* <Text> */}
       <Title>Activité quotidienne</Title>
-      {/* <Legende>
-          <Black></Black>Poids (kg) <Red></Red>Calories brûlées (kCal)
-        </Legende> */}
-      {/* </Text> */}
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="99%" height="90%">
         <BarChart data={data.sessions}>
           <CartesianGrid
             stroke="#DEDEDE"
@@ -85,13 +59,11 @@ function ActivitySection({ userData }) {
           <YAxis
             yAxisId="right"
             orientation="right"
-            // dataKey="kilogram"
             tickCount={4}
             tick={{ fill: '#9B9EAC' }}
             dx={15}
             axisLine={false}
             tickLine={false}
-            // type="number"
             domain={['dataMin-1', 'dataMax+1']}
             interval={'preserveStartEnd'}
           />
@@ -113,7 +85,6 @@ function ActivitySection({ userData }) {
           />
           <Legend
             width="60%"
-            // verticalAlign="top"
             align="right"
             iconType={'circle'}
             iconSize={8}
@@ -139,7 +110,6 @@ function ActivitySection({ userData }) {
           />
         </BarChart>
       </ResponsiveContainer>
-      {/* </Wrapper> */}
     </ActivityDiv>
   )
 }
@@ -149,3 +119,27 @@ ActivitySection.propTypes = {
 }
 
 export default ActivitySection
+
+const ActivityDiv = styled.div`
+  // position: relative;
+  // display: flex;
+  // flex-direction: column;
+  height: 45%;
+  width: 100%;
+  border-radius: 5px;
+
+  background-color: #fbfbfb;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+  border-radius: 5px;
+
+  // ici padding à cause de la defaillance du responsivecontainer
+  padding-bottom: 40px;
+`
+
+const Title = styled.h2`
+  font-size: 15px;
+  height: 20%;
+  padding 20px 32px;
+  width: 50%
+  
+`

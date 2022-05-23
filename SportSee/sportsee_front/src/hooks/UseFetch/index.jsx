@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { useParams } from 'react-router-dom'
 
-function useFetch() {
+function UseFetch() {
   const [isLoading, setLoading] = useState(true)
   const [userData, setData] = useState({})
 
@@ -46,4 +46,4 @@ function useFetch() {
   return { isLoading, user }
 }
 
-export default useFetch
+export default UseFetch

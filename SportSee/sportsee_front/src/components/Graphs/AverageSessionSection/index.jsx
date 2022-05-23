@@ -3,65 +3,52 @@ import AverageTooltip from '../Tooltips/AverageTooltip'
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-// import React, { PureComponent } from 'react'
 import {
   LineChart,
   Line,
   XAxis,
   YAxis,
-  //   CartesianGrid,
   Tooltip,
-  //   Legend,
   ResponsiveContainer,
 } from 'recharts'
 
-// background: ${({ perc }) =>
-//   perc && `linear-gradient(90deg, #ff0000 ${perc}%, #ffed4b ${perc}%)`};
+/**
+ * Displays the average session section graph,
+ 
+ * @prop     {object}   userData    Data get from API
+ * 
+ * @type     {object}   data        Specific datas used in this component
+ *
+ * @returns  {div}                  The graph section
+ */
 
-const Wrapper = styled.div`
-  background: #ff0000;
+/**
+ * Format the X axis,
+ *
+ * @param     {number}   tickItem    Number of the day
+ *
+ * @returns   {string}               Day of the week format ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+ */
 
-  // height: 100%;
-  // width: 100%;
-  padding: 5%;
+/**
+ * Get the state of the percentage on mouse move to fill the background regarding to,
+ * @prop      {number}   perc       Percentage of the graph regarding the mouse position
+ *
+ * @param     {number}   perc       Percentage of the graph regarding the mouse position
+ * @param     {function} setPerc    Updates the percentage
+ *
+ * @returns   {number}              Percentage of the background to fill regarding the mouse position
+ */
 
-  border-radius: 5px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`
-
-const BGFilter = styled.div`
-  position: absolute;
-  background-color: #000000;
-  opacity: 0.1;
-  height: 100%;
-  right: 0;
-  top: 0;
-  display: ${({ mouseIn }) => (mouseIn ? 'block' : 'none')};
-  width: ${({ perc }) =>
-    perc < 45
-      ? `calc(${perc}% + 5%)`
-      : perc > 45
-      ? `calc(${perc}% - 5%)`
-      : perc === 100
-      ? '0%'
-      : perc === 0 && '100%'};
-`
-// REVOIR LES POURCENTAGES ICI POUR QUE CE SOIT COHERENT
-//perc < 50 ? `calc(${perc}% + 10px)` : `calc(${perc}% - 10px)`};
-
-const Title = styled.h2`
-  font-size: 15px;
-  position: absolute;
-  color: #ffffff;
-  opacity: 0.5;
-  top: 8%;
-  left: 8%;
-  line-height: 24px;
-`
+/**
+ * Get the position of the mouse (in or out of the graph) to display oh not the background fill effect,
+ * @prop      {boolean}   mouseIn       Is the mouse in the graph ?
+ *
+ * @param     {boolean}   mouseIn       Is the mouse in the graph ?
+ * @param     {function}  isMouseIn     Updates the position of the mouse
+ *
+ * @returns   {bool}                    If the mouse is in the graph, we display the background
+ */
 
 function AverageSessionSection({ userData }) {
   const data = userData.data.sessions
@@ -89,8 +76,6 @@ function AverageSessionSection({ userData }) {
     isMouseIn(false)
   }
 
-  // console.log(mouseOut)
-
   return (
     <Wrapper perc={perc}>
       <BGFilter perc={100 - perc} mouseIn={mouseIn}></BGFilter>
@@ -98,23 +83,15 @@ function AverageSessionSection({ userData }) {
         Durée moyenne des <br />
         sessions
       </Title>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="99%" height="99%">
         <LineChart
           data={data}
-          // margin={{
-          //   top: 50,
-          //   right: 20,
-          //   left: 20,
-          //   bottom: 10,
-          // }}
           onMouseMove={onMouseMove}
           onMouseOut={onMouseOut}
         >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-
           <defs>
             <linearGradient id="LinearGradient">
-              <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.1} />
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.2} />
               <stop offset={`${perc}%`} stopColor="#FFFFFF" />
               <stop offset="100%" stopColor="#FFFFFF" />
             </linearGradient>
@@ -133,23 +110,21 @@ function AverageSessionSection({ userData }) {
             tickLine={false}
             stroke="white"
             tickFormatter={formatXAxis}
+            tick={{ opacity: 0.8 }}
           />
           <YAxis
             width={0}
             axisLine={false}
             tickLine={false}
             tick={false}
-            // type="number"
             domain={['dataMin-10', 'dataMax+10']}
           />
           <Tooltip content={AverageTooltip} position="top" cursor={false} />
-          {/* <Legend /> */}
           <Line
             type="natural"
             dataKey="sessionLength"
             stroke="url(#LinearGradient)"
             strokeWidth={3}
-            // fillOpacity={1}
             dot={false}
             activeDot={{ stroke: 'none', fill: 'url(#RadialGradient)', r: 8 }}
           />
@@ -166,3 +141,40 @@ AverageSessionSection.propTypes = {
 }
 
 export default AverageSessionSection
+
+const Wrapper = styled.div`
+  background: #ff0000;
+
+  // height: 100%;
+  // width: 100%;
+  padding: 5% 0;
+
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`
+
+const BGFilter = styled.div`
+  // box-sizing: content-box;
+  position: absolute;
+  background-color: #000000;
+  opacity: 0.1;
+  height: 100%;
+  right: 0;
+  top: 0;
+  display: ${({ mouseIn }) => (mouseIn ? 'block' : 'none')};
+  width: ${({ perc }) => `${perc}%`};
+`
+
+const Title = styled.h2`
+  font-size: 15px;
+  position: absolute;
+  color: #ffffff;
+  opacity: 0.5;
+  top: 8%;
+  left: 8%;
+  line-height: 24px;
+`

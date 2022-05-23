@@ -7,13 +7,16 @@ import calories from '../../assets/calories.svg'
 import carbs from '../../assets/carbs.svg'
 import protein from '../../assets/protein.svg'
 
-const DataSection = styled.section`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
+/**
+ * Displays the different data kind div in the data section,
+ 
+ * @prop     {object}   userData    Data get from API
+ * 
+ * @type     {object}   data        Specific datas used in this comonent
+ * @type     {Array}    dataList    Texts and datas needed for the display
+
+ * @returns  {section}              The data section
+ */
 
 function MainDataSection({ userData }) {
   const data = userData.data.keyData
@@ -70,3 +73,11 @@ MainDataSection.propTypes = {
 }
 
 export default MainDataSection
+
+const DataSection = styled.section`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`

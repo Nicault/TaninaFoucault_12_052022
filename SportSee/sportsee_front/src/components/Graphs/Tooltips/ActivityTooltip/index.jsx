@@ -1,19 +1,14 @@
 import styled from 'styled-components'
 
-const BG = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 63px;
-  width: 39px;
+/**
+ * Layout of the activity section tooltip
+ 
+ * @component
+ * @prop     {boolean}    active       state of the tooltip
+ * @prop     {Array}      payload      datas
 
-  border-radius: 0px;
-  background: #e60000;
-  color: white;
-
-  font-size: 10px;
-`
+ * @returns  {Div}                     Tooltip
+ */
 
 const ActivityTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -29,3 +24,18 @@ const ActivityTooltip = ({ active, payload }) => {
 }
 
 export default ActivityTooltip
+
+const BG = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 63px;
+  width: 39px;
+
+  border-radius: 0px;
+  background: #e60000;
+  color: white;
+
+  font-size: 10px;
+`

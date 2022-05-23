@@ -1,15 +1,14 @@
 import styled from 'styled-components'
 
-const BG = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 39px;
-  height: 25px;
-  background-color: white;
+/**
+ * Layout of the average section tooltip
+ 
+ * @component
+ * @prop     {boolean}    active       state of the tooltip
+ * @prop     {Array}      payload      datas
 
-  font-size: 10px;
-`
+ * @returns  {Div}                     Tooltip
+ */
 
 const AverageTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -24,3 +23,14 @@ const AverageTooltip = ({ active, payload }) => {
 }
 
 export default AverageTooltip
+
+const BG = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 39px;
+  height: 25px;
+  background-color: white;
+
+  font-size: 10px;
+`

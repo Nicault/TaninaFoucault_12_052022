@@ -1,5 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+// import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import './style.css'
 
@@ -10,9 +11,9 @@ import SideBar from './components/SideBar'
 // const root = ReactDOM.createRoot(document.getElementById('root'))
 // root.render(<React.StrictMode></React.StrictMode>)
 
-const container = document.getElementById('root')
-const root = ReactDOM.createRoot(container)
-root.render(
+// const container = document.getElementById('root')
+// const root = ReactDOM.createRoot(container)
+ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Header />
@@ -22,5 +23,6 @@ root.render(
         {/* <Route path="*" element={<Error />}></Route> */}
       </Routes>
     </Router>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 )
