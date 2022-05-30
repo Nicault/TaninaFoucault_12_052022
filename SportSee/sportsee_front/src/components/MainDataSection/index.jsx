@@ -12,9 +12,6 @@ import protein from '../../assets/protein.svg'
  
  * @prop     {object}   userData    Data get from API
  * 
- * @type     {object}   data        Specific datas used in this comonent
- * @type     {Array}    dataList    Texts and datas needed for the display
-
  * @returns  {section}              The data section
  */
 
@@ -26,7 +23,7 @@ function MainDataSection({ userData }) {
       logo: calories,
       altTxt: 'Calories',
       howMuch: data.calorieCount,
-      unit: 'Cal',
+      unit: 'kCal',
       what: 'Calories',
     },
     {

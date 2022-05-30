@@ -17,28 +17,11 @@ import PropTypes from 'prop-types'
  
  * @prop     {object}   userData    Data get from API
  * 
- * @type     {object}   data        Specific datas used in this component
- * @type     {Array}    dataList    Texts and datas needed for the display
-
  * @returns  {div}                  The graph section
- */
-
-/**
- * Format the X axis,
- 
- * @param     {string}   tickItem    Date format AAAA-MM-DD
- * 
- * @returns   {string}               Date format D for ( 1 - 9 ) and DD for ( >= 10 )
  */
 
 function ActivitySection({ userData }) {
   const data = userData.data
-
-  const formatXAxis = (tickItem) => {
-    let result = tickItem.toString().slice(-2)
-    if (result[0] === '0') return result.slice(1)
-    else return result
-  }
 
   return (
     <ActivityDiv>
@@ -50,12 +33,7 @@ function ActivitySection({ userData }) {
             strokeDasharray=" 3 3 "
             vertical={false}
           />
-          <XAxis
-            dataKey={'day'}
-            tickFormatter={formatXAxis}
-            dy={15}
-            tick={{ fill: '#9B9EAC' }}
-          />
+          <XAxis dataKey={'day'} dy={15} tick={{ fill: '#9B9EAC' }} />
           <YAxis
             yAxisId="right"
             orientation="right"

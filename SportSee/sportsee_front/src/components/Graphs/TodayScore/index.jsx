@@ -15,52 +15,11 @@ import {
  
  * @prop     {object}   userData    Data get from API
  * 
- * @type     {object}   data        Specific datas used in this component
- *
  * @returns  {div}                  The graph section
- */
-
-/**
- * Format the score from a percentage to a whole number ( ex : 0.8 -> 80 ),
- *
- * @param     {number}   tickItem    percentage
- *
- * @returns   {number}               whole number
- */
-
-/**
- * Get the state of the width of the div to fill the background regarding to,
- * If the width is bigger : set the height. if the height is bigger : set the width.
- * in order to have a perfect responsive circle
- * @prop      {number}   width       width of the div regarding the screen's size
- *
- * @param     {number}   width       width of the div regarding the screen's size
- * @param     {function} setWidth    Updates the size
- *
- * @returns   {number}               width of the div regarding the screen's size
- */
-
-/**
- * Get the state of the height of the div to fill the background regarding to,
- * If the width is bigger : set the height. if the height is bigger : set the width.
- * in order to have a perfect responsive circle
- * @prop      {number}   height       height of the div regarding the screen's size
- *
- * @param     {number}   height       height of the div regarding the screen's size
- * @param     {function} setHeight    Updates the size
- *
- * @returns   {number}                height of the div regarding the screen's size
  */
 
 function TodayScore({ userData }) {
   const data = userData.data
-
-  const formatScore = () => {
-    if (data.score) return data.score * 100
-    else if (data.todayScore) return data.todayScore * 100
-  }
-
-  const percentValue = formatScore()
 
   const ref = useRef(Wrapper)
   const [width, setWidth] = useState(ref.current.offsetWidth)
@@ -85,7 +44,7 @@ function TodayScore({ userData }) {
     <Wrapper ref={ref}>
       <Title>Score</Title>
       <Text height={height} width={width}>
-        <Percentage>{percentValue} %</Percentage>
+        <Percentage>{data.realScore} %</Percentage>
         <br />
         de votre <br />
         objectif
@@ -106,7 +65,7 @@ function TodayScore({ userData }) {
             fill="red"
             minAngle={15}
             background={{ fill: '#FBFBFB' }}
-            dataKey={formatScore}
+            dataKey="realScore"
             cornerRadius={30 / 2}
           />
         </RadialBarChart>

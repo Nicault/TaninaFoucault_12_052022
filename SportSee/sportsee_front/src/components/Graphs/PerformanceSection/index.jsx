@@ -15,61 +15,23 @@ import {
  
  * @prop     {object}   userData    Data get from API
  * 
- * @type     {object}   data        Specific datas used in this component
- *
  * @returns  {div}                  The graph section
- */
-
-/**
- * Format the tick items by translating,
- *
- * @param     {string}   item    type of in english
- *
- * @returns   {string}           type of translated in french
  */
 
 function PerformanceSection({ userData }) {
   const data = userData.data
 
-  const translateItem = (item) => {
-    if (item === 'cardio') return 'Cardio'
-    if (item === 'energy') return 'Energie'
-    if (item === 'endurance') return 'Endurance'
-    if (item === 'strength') return 'Force'
-    if (item === 'speed') return 'Vitesse'
-    if (item === 'intensity') return 'Intensité'
-  }
-
-  const formatKind = (kindNumber) => {
-    if (!data) return
-    let result = data.kind[kindNumber.kind]
-    return translateItem(result)
-    // return result.charAt(0).toUpperCase() + result.slice(1)
-  }
-
   return (
     <Wrapper>
       <ResponsiveContainer width="99%" height="99%">
-        <RadarChart
-          // cx="50%"
-          // cy="50%"
-          // outerRadius="80%"
-
-          // width="50%"
-          // height="50%"
-          data={data.data}
-          startAngle={210}
-          endAngle={570}
-        >
+        <RadarChart data={data.data} startAngle={210} endAngle={570}>
           <PolarGrid radialLines={false} />
           <PolarAngleAxis
-            dataKey={formatKind}
-            // tickFormatter={formatTicks}
+            dataKey="kind"
             axisLine={false}
             tickLine={false}
             stroke="white"
           />
-          {/* <PolarRadiusAxis /> */}
           <Radar
             dataKey="value"
             stroke="rgba(255, 1, 1, 0.7)"

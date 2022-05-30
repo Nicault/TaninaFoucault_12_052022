@@ -1,13 +1,15 @@
 import styled from 'styled-components'
-import UseFetch from '../../hooks/UseFetch'
+// import UseFetch from '../../hooks/UseFetch'
+import DataFormater from '../../components/DataFormater'
 import MainDataSection from '../../components/MainDataSection'
 import ActivitySection from '../../components/Graphs/ActivitySection'
 import AverageSessionSection from '../../components/Graphs/AverageSessionSection'
 import PerformanceSection from '../../components/Graphs/PerformanceSection'
 import TodayScore from '../../components/Graphs/TodayScore'
+import Error from '../../components/Error'
 
 /**
- * collects the data and deliver it to the other components,
+ * collects the data and delivers it to the other components,
  * displays the home page,
  
  * @component
@@ -17,11 +19,11 @@ import TodayScore from '../../components/Graphs/TodayScore'
  */
 
 function Home() {
-  const { user, isLoading } = UseFetch()
+  const { user, isLoading } = DataFormater()
 
   return (
     <HomeSection>
-      {!isLoading && (
+      {!isLoading && user.get('global') !== 'can not get user' ? (
         <Wrapper>
           <HeaderDiv>
             <HomeTitle>
@@ -46,6 +48,8 @@ function Home() {
             </RightDiv>
           </GraphSection>
         </Wrapper>
+      ) : (
+        <Error />
       )}
     </HomeSection>
   )

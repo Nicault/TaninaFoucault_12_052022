@@ -31,7 +31,7 @@ function MainData({ logo, altTxt, howMuch, unit, what }) {
 MainData.propTypes = {
   logo: PropTypes.string,
   altTxt: PropTypes.string,
-  howMuch: PropTypes.number,
+  howMuch: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   unit: PropTypes.string,
   what: PropTypes.string,
 }

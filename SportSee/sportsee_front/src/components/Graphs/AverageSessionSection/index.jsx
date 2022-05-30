@@ -17,8 +17,6 @@ import {
  
  * @prop     {object}   userData    Data get from API
  * 
- * @type     {object}   data        Specific datas used in this component
- *
  * @returns  {div}                  The graph section
  */
 
@@ -32,7 +30,6 @@ import {
 
 /**
  * Get the state of the percentage on mouse move to fill the background regarding to,
- * @prop      {number}   perc       Percentage of the graph regarding the mouse position
  *
  * @param     {number}   perc       Percentage of the graph regarding the mouse position
  * @param     {function} setPerc    Updates the percentage
@@ -42,7 +39,6 @@ import {
 
 /**
  * Get the position of the mouse (in or out of the graph) to display oh not the background fill effect,
- * @prop      {boolean}   mouseIn       Is the mouse in the graph ?
  *
  * @param     {boolean}   mouseIn       Is the mouse in the graph ?
  * @param     {function}  isMouseIn     Updates the position of the mouse
@@ -52,11 +48,6 @@ import {
 
 function AverageSessionSection({ userData }) {
   const data = userData.data.sessions
-
-  const formatXAxis = (tickItem) => {
-    const week = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
-    return (tickItem = week[tickItem - 1])
-  }
 
   const [perc, setPerc] = useState(0)
   const onMouseMove = (hoveredData) => {
@@ -109,7 +100,6 @@ function AverageSessionSection({ userData }) {
             axisLine={false}
             tickLine={false}
             stroke="white"
-            tickFormatter={formatXAxis}
             tick={{ opacity: 0.8 }}
           />
           <YAxis

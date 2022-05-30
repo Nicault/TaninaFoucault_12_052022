@@ -2,6 +2,13 @@ import { useState, useEffect } from 'react'
 
 import { useParams } from 'react-router-dom'
 
+/**
+ * Get the datas from the API,
+ *
+ * @returns  {isLoading}      loading status
+ * @returns  {user}           user's datas
+ */
+
 function UseFetch() {
   const [isLoading, setLoading] = useState(true)
   const [userData, setData] = useState({})
@@ -36,14 +43,7 @@ function UseFetch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId])
 
-  const user = new Map()
-
-  user.set('global', userData[0])
-  user.set('activity', userData[1])
-  user.set('averageSession', userData[2])
-  user.set('performance', userData[3])
-
-  return { isLoading, user }
+  return { isLoading, userData }
 }
 
 export default UseFetch

@@ -7,6 +7,7 @@ import './style.css'
 import Header from './components/Header'
 import Home from './pages/Home'
 import SideBar from './components/SideBar'
+import Error from './components/Error'
 
 // const root = ReactDOM.createRoot(document.getElementById('root'))
 // root.render(<React.StrictMode></React.StrictMode>)
@@ -20,7 +21,7 @@ ReactDOM.render(
       <SideBar />
       <Routes>
         <Route path="/user/:userId" element={<Home />}></Route>
-        {/* <Route path="*" element={<Error />}></Route> */}
+        <Route path="*" element={<Error />}></Route>
       </Routes>
     </Router>
   </React.StrictMode>,
