@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import DataFormater from '../../components/DataFormater'
+import DataFormater from '../../API/DataFormater'
 import MainDataSection from '../../components/MainDataSection'
 import ActivitySection from '../../components/Graphs/ActivitySection'
 import AverageSessionSection from '../../components/Graphs/AverageSessionSection'
@@ -13,7 +13,6 @@ import Error from '../../components/Error'
  
  * @component
  * @type     {Map}      user        User's data fetched from API
- * @type     {boolean}  isLoading   Loading status
  * @returns  {div}                  Home page
  */
 

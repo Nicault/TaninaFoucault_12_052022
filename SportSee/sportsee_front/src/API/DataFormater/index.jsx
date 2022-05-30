@@ -1,10 +1,9 @@
-import UseFetch from '../../hooks/UseFetch'
+import UseFetch from '../UseFetch'
 
 /**
  * Fromat the datas,
  *
- * @returns  {isLoading}      loading status
- * @returns  {user}       user's datas
+ * @returns  {user}       user's formated datas
  */
 
 function DataFormater() {
