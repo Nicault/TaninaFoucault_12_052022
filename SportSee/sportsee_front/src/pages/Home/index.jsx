@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-// import UseFetch from '../../hooks/UseFetch'
 import DataFormater from '../../components/DataFormater'
 import MainDataSection from '../../components/MainDataSection'
 import ActivitySection from '../../components/Graphs/ActivitySection'
@@ -23,7 +22,7 @@ function Home() {
 
   return (
     <HomeSection>
-      {!isLoading && user.get('global') !== 'can not get user' ? (
+      {!isLoading && user.size ? (
         <Wrapper>
           <HeaderDiv>
             <HomeTitle>

@@ -5,7 +5,7 @@ const user = new Map()
 function DataFormater() {
   const { userData, isLoading } = UseFetch()
 
-  if (!isLoading) {
+  if (!isLoading && userData[0] !== 'can not get user') {
     // userData[0] from cal to kCal
 
     let user0Cal = userData[0].data.keyData.calorieCount
