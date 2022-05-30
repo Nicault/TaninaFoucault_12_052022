@@ -18,11 +18,11 @@ import Error from '../../components/Error'
  */
 
 function Home() {
-  const { user, isLoading } = DataFormater()
+  const { user } = DataFormater()
 
   return (
     <HomeSection>
-      {!isLoading && user.size ? (
+      {user.size ? (
         <Wrapper>
           <HeaderDiv>
             <HomeTitle>

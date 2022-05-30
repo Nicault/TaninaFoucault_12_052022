@@ -21,14 +21,6 @@ import {
  */
 
 /**
- * Format the X axis,
- *
- * @param     {number}   tickItem    Number of the day
- *
- * @returns   {string}               Day of the week format ['L', 'M', 'M', 'J', 'V', 'S', 'D']
- */
-
-/**
  * Get the state of the percentage on mouse move to fill the background regarding to,
  *
  * @param     {number}   perc       Percentage of the graph regarding the mouse position

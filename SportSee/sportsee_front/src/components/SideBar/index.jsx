@@ -6,7 +6,40 @@ import sideZen from '../../assets/sideZen.svg'
 import sideSwim from '../../assets/sideSwim.svg'
 import sideBike from '../../assets/sideBike.svg'
 import sideMuscle from '../../assets/sideMuscle.svg'
-// si jamais le nav est trop haut, changer le padding bottom de la side section et le mettre dans le sidetext
+
+/**
+ * displays the side bar,
+ *
+ * @returns  {section}      side bar
+ */
+
+function SideBar() {
+  return (
+    <SideSection>
+      <FakeDiv></FakeDiv>
+      <SideNav>
+        <StyledLink to="#">
+          <SideIcon logo={sideZen} altTxt="" />
+        </StyledLink>
+        <StyledLink to="#">
+          <SideIcon logo={sideSwim} altTxt="" />
+        </StyledLink>
+        <StyledLink to="#">
+          <SideIcon logo={sideBike} altTxt="" />
+        </StyledLink>
+        <StyledLink to="#">
+          <SideIcon logo={sideMuscle} altTxt="" />
+        </StyledLink>
+      </SideNav>
+      <SideTxt>
+        <p>Copiryght, SportSee 2020</p>
+      </SideTxt>
+    </SideSection>
+  )
+}
+
+export default SideBar
+
 const SideSection = styled.section`
   padding-top: 91px;
   padding-bottom: 128px;
@@ -37,30 +70,3 @@ const SideTxt = styled.div`
 
   transform: rotate(-90deg);
 `
-
-function SideBar() {
-  return (
-    <SideSection>
-      <FakeDiv></FakeDiv>
-      <SideNav>
-        <StyledLink to="#">
-          <SideIcon logo={sideZen} altTxt="" />
-        </StyledLink>
-        <StyledLink to="#">
-          <SideIcon logo={sideSwim} altTxt="" />
-        </StyledLink>
-        <StyledLink to="#">
-          <SideIcon logo={sideBike} altTxt="" />
-        </StyledLink>
-        <StyledLink to="#">
-          <SideIcon logo={sideMuscle} altTxt="" />
-        </StyledLink>
-      </SideNav>
-      <SideTxt>
-        <p>Copiryght, SportSee 2020</p>
-      </SideTxt>
-    </SideSection>
-  )
-}
-
-export default SideBar

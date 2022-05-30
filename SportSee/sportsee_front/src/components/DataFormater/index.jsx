@@ -1,8 +1,15 @@
 import UseFetch from '../../hooks/UseFetch'
 
-const user = new Map()
+/**
+ * Fromat the datas,
+ *
+ * @returns  {isLoading}      loading status
+ * @returns  {user}       user's datas
+ */
 
 function DataFormater() {
+  const user = new Map()
+
   const { userData, isLoading } = UseFetch()
 
   if (!isLoading && userData[0] !== 'can not get user') {
@@ -80,7 +87,7 @@ function DataFormater() {
     user.set('performance', userData[3])
   }
 
-  return { user, isLoading }
+  return { user }
 }
 
 export default DataFormater

@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
  * Get the datas from the API,
  *
  * @returns  {isLoading}      loading status
- * @returns  {user}           user's datas
+ * @returns  {userData}       user's datas
  */
 
 function UseFetch() {

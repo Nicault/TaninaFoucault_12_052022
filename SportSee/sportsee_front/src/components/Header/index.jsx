@@ -2,6 +2,12 @@ import styled from 'styled-components'
 import logo from '../../assets/logo.svg'
 import { Link } from 'react-router-dom'
 
+/**
+ * displays the header,
+ *
+ * @returns  {section}      header
+ */
+
 function Header() {
   return (
     <HeaderSection>

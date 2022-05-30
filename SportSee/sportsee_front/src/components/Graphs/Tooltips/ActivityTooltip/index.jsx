@@ -15,7 +15,7 @@ const ActivityTooltip = ({ active, payload }) => {
     return (
       <BG>
         <p>{`${payload[0].value}`}kg</p>
-        <p>{`${payload[1].value}`}Kcal</p>
+        <p>{`${payload[1].value}`}Cal</p>
       </BG>
     )
   }
